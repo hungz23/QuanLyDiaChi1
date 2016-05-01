@@ -55,7 +55,7 @@ public class AddAddressGUI extends javax.swing.JFrame {
             }
         });
 
-        province.setForeground(new java.awt.Color(204, 204, 204));
+        province.setForeground(Color.LIGHT_GRAY);
         province.setText("Tỉnh");
         province.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -68,7 +68,7 @@ public class AddAddressGUI extends javax.swing.JFrame {
             }
         });
 
-        district.setForeground(new java.awt.Color(204, 204, 204));
+        district.setForeground(Color.LIGHT_GRAY);
         district.setText("Huyện");
         district.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -81,7 +81,7 @@ public class AddAddressGUI extends javax.swing.JFrame {
             }
         });
 
-        ward.setForeground(new java.awt.Color(204, 204, 204));
+        ward.setForeground(Color.LIGHT_GRAY);
         ward.setText("Xã, Phường");
         ward.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -94,7 +94,7 @@ public class AddAddressGUI extends javax.swing.JFrame {
             }
         });
 
-        address.setForeground(new java.awt.Color(204, 204, 204));
+        address.setForeground(Color.LIGHT_GRAY);
         address.setText("Địa Chỉ");
         address.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -240,7 +240,9 @@ public class AddAddressGUI extends javax.swing.JFrame {
 
     private void provinceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provinceMouseClicked
         // TODO add your handling code here:
-        province.setText("");
+        if(province.getForeground()==Color.LIGHT_GRAY){
+            province.setText("");
+        }
         province.setForeground(Color.black);
     }//GEN-LAST:event_provinceMouseClicked
 
