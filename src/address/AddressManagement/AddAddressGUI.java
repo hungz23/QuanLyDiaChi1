@@ -9,6 +9,7 @@ import entity.AddressManagement.Address;
 import entity.AddressManagement.District;
 import static entity.AddressManagement.District_.provinceid;
 import entity.AddressManagement.Province;
+import entity.AddressManagement.Ward;
 import java.awt.Color;
 import javax.swing.JOptionPane;
 
@@ -171,8 +172,8 @@ public class AddAddressGUI extends javax.swing.JFrame {
         String provinceName=province.getText();
         String districtName=district.getText();
         String wardName=ward.getText();
-        String addressName=ward.getText();
-        Address addressInfo;
+        String addressName=address.getText();
+        Address addressInfo= new Address();addressInfo.setName(addressName);
         boolean province=false,district=false,ward=false;
         //search provinceid
         
@@ -182,24 +183,44 @@ public class AddAddressGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(super.rootPane,"Không có tỉnh mà bạn nhập hoặc bạn chưa nhập tên tỉnh","Lỗi nhập",JOptionPane.WARNING_MESSAGE);
                 province=false;
             }else{
+                addressInfo.setProvinceid(provinceList.get(0).getProvinceid());
                 province=true;
             }
         
         //search districtid
             query=entity.createNamedQuery("District.findByNameAndProvince").setParameter("name", districtName).setParameter("provinceid", provinceList.get(0).getProvinceid());
             java.util.List<District> districtList=query.getResultList();
-            if(districtList.size()==0) JOptionPane.showMessageDialog(super.rootPane,"huyện và tỉnh không khớp nhau hoặc tên huyện sai","Lỗi nhập",JOptionPane.WARNING_MESSAGE);
+            if(districtList.size()==0){
+                JOptionPane.showMessageDialog(super.rootPane,"huyện và tỉnh không khớp nhau hoặc tên huyện sai","Lỗi nhập",JOptionPane.WARNING_MESSAGE);
+                district=false;
+            }else{
+                addressInfo.setDistrictid(districtList.get(0).getDistrictid());
+                district=true;
+            }
 
         //search wardid
         
             query=entity.createNamedQuery("Ward.findByNameAndDistrict").setParameter("name", wardName).setParameter("districtid", districtList.get(0).getDistrictid());
-            java.util.List<District> wardList=query.getResultList();
-            if(wardList.size()==0) JOptionPane.showMessageDialog(super.rootPane,"huyện và xã không khớp nhau hoặc tên xã sai","Lỗi nhập",JOptionPane.WARNING_MESSAGE);
+            java.util.List<Ward> wardList=query.getResultList();
+            if(wardList.size()==0){
+                JOptionPane.showMessageDialog(super.rootPane,"huyện và xã không khớp nhau hoặc tên xã sai","Lỗi nhập",JOptionPane.WARNING_MESSAGE);
+                ward=false;
+            }else{
+                addressInfo.setWardid(wardList.get(0).getWardid());
+                ward=true;
+            }
 
         //search addressid
-        int dialogResult = JOptionPane.showConfirmDialog (super.rootPane, "Would You Like to Save your Previous Note First?","Warning",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
-        if(dialogResult==JOptionPane.YES_OPTION){
-            System.out.println("hung");
+        if(province && district && ward){
+            int dialogResult = JOptionPane.showConfirmDialog (super.rootPane, "Would You Like to Save your Previous Note First?","Warning",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+            if(dialogResult==JOptionPane.YES_OPTION){
+                System.out.println("hung");
+                entity.getTransaction().begin();
+                entity.persist(addressInfo);
+                entity.getTransaction().commit();
+                AddAddressGUI.this.setVisible(false);
+                new AddressManagementGUI().setVisible(true);
+            }
         }
         
     }//GEN-LAST:event_addButtonActionPerformed
