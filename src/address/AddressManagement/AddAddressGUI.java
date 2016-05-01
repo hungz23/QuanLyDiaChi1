@@ -248,19 +248,25 @@ public class AddAddressGUI extends javax.swing.JFrame {
 
     private void districtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_districtMouseClicked
         // TODO add your handling code here:
-        district.setText("");
+        if(district.getForeground()==Color.LIGHT_GRAY){
+            district.setText("");
+        }
         district.setForeground(Color.black);
     }//GEN-LAST:event_districtMouseClicked
 
     private void wardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wardMouseClicked
         // TODO add your handling code here:
-        ward.setText("");
+        if(ward.getForeground()==Color.LIGHT_GRAY){
+            ward.setText("");
+        }
         ward.setForeground(Color.black);
     }//GEN-LAST:event_wardMouseClicked
 
     private void addressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressMouseClicked
         // TODO add your handling code here:
-        address.setText("");
+        if(address.getForeground()==Color.LIGHT_GRAY){
+            address.setText("");
+        }
         address.setForeground(Color.black);
     }//GEN-LAST:event_addressMouseClicked
 
