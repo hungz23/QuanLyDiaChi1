@@ -206,6 +206,7 @@ public class AddAddressGUI extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(super.rootPane,"huyện và xã không khớp nhau hoặc tên xã sai","Lỗi nhập",JOptionPane.WARNING_MESSAGE);
                 ward=false;
             }else{
+                System.out.println(wardList.get(0).getName());
                 addressInfo.setWardid(wardList.get(0).getWardid());
                 ward=true;
             }
@@ -214,7 +215,7 @@ public class AddAddressGUI extends javax.swing.JFrame {
         if(province && district && ward){
             int dialogResult = JOptionPane.showConfirmDialog (super.rootPane, "Would You Like to Save your Previous Note First?","Warning",JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
             if(dialogResult==JOptionPane.YES_OPTION){
-                System.out.println("hung");
+                //ystem.out.println("hung");
                 entity.getTransaction().begin();
                 entity.persist(addressInfo);
                 entity.getTransaction().commit();
