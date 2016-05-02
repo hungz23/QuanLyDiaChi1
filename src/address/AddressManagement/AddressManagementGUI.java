@@ -64,6 +64,7 @@ public class AddressManagementGUI extends javax.swing.JFrame {
         provinceText = new javax.swing.JTextField();
         infoListView = new javax.swing.JScrollPane();
         infoList = new javax.swing.JList<>();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -112,6 +113,7 @@ public class AddressManagementGUI extends javax.swing.JFrame {
         for(Address address: addressList){
             String display= new String();
             display+=address.getName();
+            //System.out.println(address.getWardid());
             query= entity.createNamedQuery("Ward.findByWardid").setParameter("wardid", address.getWardid());
             List<Ward> wardList=query.getResultList();
             for(Ward ward: wardList){
@@ -138,37 +140,43 @@ public class AddressManagementGUI extends javax.swing.JFrame {
         });
         infoListView.setViewportView(infoList);
 
+        jButton1.setText("Home");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGap(59, 59, 59)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(add, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 196, Short.MAX_VALUE)
+                        .addComponent(infoListView, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(11, 11, 11)
-                        .addComponent(provinceText, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(49, 49, 49)
-                        .addComponent(searchButton))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(115, 115, 115)
-                        .addComponent(add))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(59, 59, 59)
-                        .addComponent(infoListView, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(provinceText, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(searchButton))))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(5, 5, 5)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(provinceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(provinceText, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(searchButton))
-                .addGap(42, 42, 42)
-                .addComponent(infoListView, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 100, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(infoListView, javax.swing.GroupLayout.DEFAULT_SIZE, 218, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(add)
                 .addContainerGap())
         );
@@ -239,14 +247,14 @@ public class AddressManagementGUI extends javax.swing.JFrame {
         switch(level){
         case province:
             ListModel model1=infoList.getModel();
-            String provinceid=new String();
+            provinceidGlobal=new String();
             String provinceName=(String) model1.getElementAt(evt.getFirstIndex());
             javax.persistence.Query query=AddressManagementPUEntityManager.createNamedQuery("Province.findByName").setParameter("name", provinceName);
             java.util.List<Province> provinceList=query.getResultList();
             for(Province province: provinceList){
-                provinceid=province.getProvinceid();System.out.println(province.getName());
+                provinceidGlobal=province.getProvinceid();
             }
-            query=AddressManagementPUEntityManager.createNamedQuery("District.findByProvinceid").setParameter("provinceid", provinceid);
+            query=AddressManagementPUEntityManager.createNamedQuery("District.findByProvinceid").setParameter("provinceid", provinceidGlobal);
             java.util.List<District> findedDistrictList=query.getResultList();
         
             DefaultListModel model= new DefaultListModel();
@@ -269,14 +277,14 @@ public class AddressManagementGUI extends javax.swing.JFrame {
             break;
         case district:
             model1=infoList.getModel();
-            String districtid=new String();
+            districtidGlobal =new String();
             String districtName=(String) model1.getElementAt(evt.getFirstIndex());
-            javax.persistence.Query districtquery=AddressManagementPUEntityManager.createNamedQuery("District.findByName").setParameter("name", districtName);
+            javax.persistence.Query districtquery=AddressManagementPUEntityManager.createNamedQuery("District.findByNameAndProvince").setParameter("name", districtName).setParameter("provinceid", provinceidGlobal);
             java.util.List<District> districtList=districtquery.getResultList();
             for(District district: districtList){
-                districtid=district.getDistrictid();
+                districtidGlobal=district.getDistrictid();
             }
-            query=AddressManagementPUEntityManager.createNamedQuery("Ward.findByDistrictid").setParameter("districtid", districtid);
+            query=AddressManagementPUEntityManager.createNamedQuery("Ward.findByDistrictid").setParameter("districtid", districtidGlobal);
             java.util.List<Ward> findedWardList=query.getResultList();
         
             model= new DefaultListModel();
@@ -299,14 +307,12 @@ public class AddressManagementGUI extends javax.swing.JFrame {
             break;
         case ward:
             model1=infoList.getModel();
-            String wardid=new String();
-            String wardName=(String) model1.getElementAt(evt.getFirstIndex());
-            query=AddressManagementPUEntityManager.createNamedQuery("Ward.findByName").setParameter("name", wardName);
+            wardidGlobal=new String();
+            String wardName=(String) model1.getElementAt(evt.getFirstIndex());System.out.println(wardName);
+            query=AddressManagementPUEntityManager.createNamedQuery("Ward.findByNameAndDistrict").setParameter("name", wardName).setParameter("districtid", districtidGlobal);
             java.util.List<Ward> wardList=query.getResultList();
-            for(Ward ward: wardList){
-                wardid=ward.getWardid();
-            }
-            query=AddressManagementPUEntityManager.createNamedQuery("Address.findByWardid").setParameter("wardid", wardid);
+            wardidGlobal=wardList.get(0).getWardid();System.out.println(wardidGlobal);
+            query=AddressManagementPUEntityManager.createNamedQuery("Address.findByWardid").setParameter("wardid", wardidGlobal);
             java.util.List<Address> addressList=query.getResultList();
         
             model= new DefaultListModel();
@@ -331,6 +337,12 @@ public class AddressManagementGUI extends javax.swing.JFrame {
             break;
         }
     }//GEN-LAST:event_infoListValueChanged
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        AddressManagementGUI.this.setVisible(false);
+        new AddressManagementGUI().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -374,10 +386,14 @@ public class AddressManagementGUI extends javax.swing.JFrame {
     private javax.persistence.Query addressQuery;
     private javax.swing.JList<String> infoList;
     private javax.swing.JScrollPane infoListView;
+    private javax.swing.JButton jButton1;
     private java.util.List provinceList;
     private javax.persistence.Query provinceQuery;
     private javax.swing.JTextField provinceText;
     private javax.swing.JButton searchButton;
     // End of variables declaration//GEN-END:variables
    private Level level;
+   private String provinceidGlobal;
+   private String districtidGlobal;
+   private String wardidGlobal;
 }

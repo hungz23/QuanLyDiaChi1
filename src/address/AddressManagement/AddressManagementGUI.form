@@ -69,41 +69,39 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="11" pref="11" max="-2" attributes="0"/>
-                      <Component id="provinceText" min="-2" pref="308" max="-2" attributes="0"/>
-                      <EmptySpace min="49" pref="49" max="-2" attributes="0"/>
-                      <Component id="searchButton" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Component id="add" alignment="0" pref="196" max="32767" attributes="0"/>
+                      <Component id="infoListView" alignment="0" pref="0" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="115" max="-2" attributes="0"/>
-                      <Component id="add" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
-                      <Component id="infoListView" min="-2" pref="158" max="-2" attributes="0"/>
+                      <Component id="provinceText" min="-2" pref="138" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="searchButton" min="-2" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="41" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" attributes="0">
-              <EmptySpace min="5" pref="5" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="1" pref="1" max="-2" attributes="0"/>
-                      <Component id="provinceText" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Component id="searchButton" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="provinceText" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="searchButton" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-              <Component id="infoListView" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="100" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="infoListView" pref="218" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Component id="add" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
@@ -157,11 +155,19 @@
             <EventHandler event="valueChanged" listener="javax.swing.event.ListSelectionListener" parameters="javax.swing.event.ListSelectionEvent" handler="infoListValueChanged"/>
           </Events>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//added&#xa; javax.persistence.EntityManager entity= javax.persistence.Persistence.createEntityManagerFactory(&quot;AddressManagementPU&quot;).createEntityManager();&#xa;        javax.persistence.Query query=entity.createNamedQuery(&quot;Address.findAll&quot;);&#xa;        java.util.List&lt;Address&gt; addressList=query.getResultList();&#xa;        DefaultListModel model= new DefaultListModel();&#xa;        for(Address address: addressList){&#xa;            String display= new String();&#xa;            display+=address.getName();&#xa;            query= entity.createNamedQuery(&quot;Ward.findByWardid&quot;).setParameter(&quot;wardid&quot;, address.getWardid());&#xa;            List&lt;Ward&gt; wardList=query.getResultList();&#xa;            for(Ward ward: wardList){&#xa;                display=display+&quot;,&quot;+ward.getName();&#xa;            }&#xa;            query= entity.createNamedQuery(&quot;District.findByDistrictid&quot;).setParameter(&quot;districtid&quot;, address.getDistrictid());&#xa;            List&lt;District&gt; districtList=query.getResultList();&#xa;            for(District district: districtList){&#xa;                display=display+&quot;,&quot;+district.getName();&#xa;            }&#xa;            query= entity.createNamedQuery(&quot;Province.findByProvinceid&quot;).setParameter(&quot;provinceid&quot;, address.getProvinceid());&#xa;            List&lt;Province&gt; provinceList=query.getResultList();&#xa;            for(Province province: provinceList){&#xa;                display=display+&quot;,&quot;+province.getName();&#xa;            }&#xa;            model.addElement(display);&#xa;        }&#xa;        infoList=new JList(model);&#xa;//added"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="//added&#xa; javax.persistence.EntityManager entity= javax.persistence.Persistence.createEntityManagerFactory(&quot;AddressManagementPU&quot;).createEntityManager();&#xa;        javax.persistence.Query query=entity.createNamedQuery(&quot;Address.findAll&quot;);&#xa;        java.util.List&lt;Address&gt; addressList=query.getResultList();&#xa;        DefaultListModel model= new DefaultListModel();&#xa;        for(Address address: addressList){&#xa;            String display= new String();&#xa;            display+=address.getName();&#xa;            //System.out.println(address.getWardid());&#xa;            query= entity.createNamedQuery(&quot;Ward.findByWardid&quot;).setParameter(&quot;wardid&quot;, address.getWardid());&#xa;            List&lt;Ward&gt; wardList=query.getResultList();&#xa;            for(Ward ward: wardList){&#xa;                display=display+&quot;,&quot;+ward.getName();&#xa;            }&#xa;            query= entity.createNamedQuery(&quot;District.findByDistrictid&quot;).setParameter(&quot;districtid&quot;, address.getDistrictid());&#xa;            List&lt;District&gt; districtList=query.getResultList();&#xa;            for(District district: districtList){&#xa;                display=display+&quot;,&quot;+district.getName();&#xa;            }&#xa;            query= entity.createNamedQuery(&quot;Province.findByProvinceid&quot;).setParameter(&quot;provinceid&quot;, address.getProvinceid());&#xa;            List&lt;Province&gt; provinceList=query.getResultList();&#xa;            for(Province province: provinceList){&#xa;                display=display+&quot;,&quot;+province.getName();&#xa;            }&#xa;            model.addElement(display);&#xa;        }&#xa;        infoList=new JList(model);&#xa;//added"/>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
       </SubComponents>
     </Container>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Home"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+      </Events>
+    </Component>
   </SubComponents>
 </Form>
