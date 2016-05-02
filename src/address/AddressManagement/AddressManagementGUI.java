@@ -272,8 +272,8 @@ public class AddressManagementGUI extends javax.swing.JFrame {
             infoListView.setViewportView(infoList);
         
             // Textfield
-            provinceText.setText("Nhập tên huyện");
-            provinceText.setForeground(new java.awt.Color(204, 204, 204));
+            provinceText.setVisible(false);
+            //provinceText.setForeground(new java.awt.Color(204, 204, 204));
             level=district;
             break;
         case district:
@@ -302,8 +302,8 @@ public class AddressManagementGUI extends javax.swing.JFrame {
             infoListView.setViewportView(infoList);
         
             // Textfield
-            provinceText.setText("Nhập tên khu");
-            provinceText.setForeground(new java.awt.Color(204, 204, 204));
+            //provinceText.setText("Nhập tên khu");
+            //provinceText.setForeground(new java.awt.Color(204, 204, 204));
             level=ward;
             break;
         case ward:
@@ -330,8 +330,8 @@ public class AddressManagementGUI extends javax.swing.JFrame {
             infoListView.setViewportView(infoList);
         
             // Textfield
-            provinceText.setText("");
-            provinceText.setForeground(new java.awt.Color(204, 204, 204));
+            //provinceText.setText("");
+            //provinceText.setForeground(new java.awt.Color(204, 204, 204));
             level=address;
             break;
         default:
