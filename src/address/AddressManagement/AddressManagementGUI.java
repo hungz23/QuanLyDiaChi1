@@ -189,7 +189,7 @@ public class AddressManagementGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         AddressManagementGUI.this.setVisible(false);
         //AddressManagementGUI.this.dispose();
-        new AddAddressGUI().setVisible(true);
+        new NewAddGUI().setVisible(true);
 
     }//GEN-LAST:event_addActionPerformed
 

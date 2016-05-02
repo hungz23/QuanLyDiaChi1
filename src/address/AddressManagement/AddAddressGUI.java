@@ -272,56 +272,19 @@ public class AddAddressGUI extends javax.swing.JFrame {
 
     
     
-    private void districtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtActionPerformed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_districtActionPerformed
+        AddAddressGUI.this.setVisible(false);
+        new AddressManagementGUI().setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void wardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wardActionPerformed
+    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_wardActionPerformed
-
-    private void provinceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provinceActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_provinceActionPerformed
-
-    private void provinceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provinceMouseClicked
-        // TODO add your handling code here:
-        if(province.getForeground()==Color.LIGHT_GRAY){
-            province.setText("");
-        }
-        province.setForeground(Color.black);
-         district.setText("huyện");district.setForeground(Color.LIGHT_GRAY);
-        ward.setText("Xã, Phường");ward.setForeground(Color.LIGHT_GRAY);        
-        address.setText("Địa Chỉ"); address.setForeground(Color.LIGHT_GRAY);
-
-        
-    }//GEN-LAST:event_provinceMouseClicked
-
-    private void districtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_districtMouseClicked
-        // TODO add your handling code here:
-        province.setText("Tỉnh");province.setForeground(Color.LIGHT_GRAY);
-        if(district.getForeground()==Color.LIGHT_GRAY){
-            district.setText("");
-        }
-        district.setForeground(Color.black);
-        ward.setText("Xã, Phường");ward.setForeground(Color.LIGHT_GRAY);
-        address.setText("Địa Chỉ"); address.setForeground(Color.LIGHT_GRAY);
-
-
-    }//GEN-LAST:event_districtMouseClicked
-
-    private void wardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wardMouseClicked
-        // TODO add your handling code here:
-        if(ward.getForeground()==Color.LIGHT_GRAY){
-            ward.setText("");
-        }
-        ward.setForeground(Color.black);
         province.setText("Tỉnh");province.setForeground(Color.LIGHT_GRAY);
         district.setText("huyện");district.setForeground(Color.LIGHT_GRAY);
+        ward.setText("Xã, Phường");ward.setForeground(Color.LIGHT_GRAY);
         address.setText("Địa Chỉ"); address.setForeground(Color.LIGHT_GRAY);
-
-    }//GEN-LAST:event_wardMouseClicked
+    }//GEN-LAST:event_formMouseClicked
 
     private void addressMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_addressMouseClicked
         // TODO add your handling code here:
@@ -334,44 +297,78 @@ public class AddAddressGUI extends javax.swing.JFrame {
         ward.setText("Xã, Phường");ward.setForeground(Color.LIGHT_GRAY);
     }//GEN-LAST:event_addressMouseClicked
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void wardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_wardActionPerformed
         // TODO add your handling code here:
-        AddAddressGUI.this.setVisible(false);
-        new AddressManagementGUI().setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_wardActionPerformed
 
-    private void provinceMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provinceMouseReleased
+    private void wardMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_wardMouseClicked
         // TODO add your handling code here:
-       
-    }//GEN-LAST:event_provinceMouseReleased
+        if(ward.getForeground()==Color.LIGHT_GRAY){
+            ward.setText("");
+        }
+        ward.setForeground(Color.black);
+        province.setText("Tỉnh");province.setForeground(Color.LIGHT_GRAY);
+        district.setText("huyện");district.setForeground(Color.LIGHT_GRAY);
+        address.setText("Địa Chỉ"); address.setForeground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_wardMouseClicked
+
+    private void districtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_districtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_districtActionPerformed
+
+    private void districtMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_districtMouseClicked
+        // TODO add your handling code here:
+        province.setText("Tỉnh");province.setForeground(Color.LIGHT_GRAY);
+        if(district.getForeground()==Color.LIGHT_GRAY){
+            district.setText("");
+        }
+        district.setForeground(Color.black);
+        ward.setText("Xã, Phường");ward.setForeground(Color.LIGHT_GRAY);
+        address.setText("Địa Chỉ"); address.setForeground(Color.LIGHT_GRAY);
+
+    }//GEN-LAST:event_districtMouseClicked
 
     private void provinceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_provinceKeyReleased
         // TODO add your handling code here:
-       
+
     }//GEN-LAST:event_provinceKeyReleased
 
-    private void provinceMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_provinceMouseWheelMoved
+    private void provinceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_provinceActionPerformed
         // TODO add your handling code here:
-        
-    }//GEN-LAST:event_provinceMouseWheelMoved
 
-    private void provinceMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provinceMouseDragged
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_provinceMouseDragged
+    }//GEN-LAST:event_provinceActionPerformed
 
-    private void provinceMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provinceMouseMoved
+    private void provinceMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provinceMouseReleased
         // TODO add your handling code here:
-       
-    }//GEN-LAST:event_provinceMouseMoved
 
-    private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+    }//GEN-LAST:event_provinceMouseReleased
+
+    private void provinceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provinceMouseClicked
         // TODO add your handling code here:
-        province.setText("Tỉnh");province.setForeground(Color.LIGHT_GRAY);
+        if(province.getForeground()==Color.LIGHT_GRAY){
+            province.setText("");
+        }
+        province.setForeground(Color.black);
         district.setText("huyện");district.setForeground(Color.LIGHT_GRAY);
         ward.setText("Xã, Phường");ward.setForeground(Color.LIGHT_GRAY);
         address.setText("Địa Chỉ"); address.setForeground(Color.LIGHT_GRAY);
-    }//GEN-LAST:event_formMouseClicked
+
+    }//GEN-LAST:event_provinceMouseClicked
+
+    private void provinceMouseWheelMoved(java.awt.event.MouseWheelEvent evt) {//GEN-FIRST:event_provinceMouseWheelMoved
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_provinceMouseWheelMoved
+
+    private void provinceMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provinceMouseMoved
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_provinceMouseMoved
+
+    private void provinceMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_provinceMouseDragged
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_provinceMouseDragged
 
     /**
      * @param args the command line arguments

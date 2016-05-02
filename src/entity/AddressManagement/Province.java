@@ -23,6 +23,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "province")
 @XmlRootElement
 @NamedQueries({
+        @NamedQuery(name = "Province.findByNameExact", query = "SELECT p FROM Province p WHERE p.name = :name"),
     @NamedQuery(name = "Province.findAll", query = "SELECT p FROM Province p"),
     @NamedQuery(name = "Province.findByProvinceid", query = "SELECT p FROM Province p WHERE p.provinceid = :provinceid"),
     @NamedQuery(name = "Province.findByName", query = "SELECT p FROM Province p WHERE p.name LIKE :name"),
