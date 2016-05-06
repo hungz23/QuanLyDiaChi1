@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.util.Arrays;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
+import javax.swing.JFrame;
 
 /**
  *
@@ -23,6 +24,7 @@ public class AddWardGUI extends javax.swing.JFrame {
      */
     public AddWardGUI() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
@@ -41,7 +43,7 @@ public class AddWardGUI extends javax.swing.JFrame {
         infoListView = new javax.swing.JScrollPane();
         infoList = new javax.swing.JList<>();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
 
         wardText.setText("tìm kiếm");
 
@@ -64,7 +66,7 @@ public class AddWardGUI extends javax.swing.JFrame {
             javax.persistence.Query query=AddressManagementPUEntityManager.createNamedQuery("Ward.findByDistrictidAndAlpha").setParameter("districtid", AddAddressGUI.districtid).setParameter("name", item+"%");
             java.util.List<Ward> result=query.getResultList();
             if(!result.isEmpty()) model.addElement(item);
-            else System.out.println(AddAddressGUI.districtid);
+            //else System.out.println(AddAddressGUI.districtid);
             for(Ward a:result){
                 model.addElement(a.getName());
 
@@ -138,7 +140,7 @@ public class AddWardGUI extends javax.swing.JFrame {
                 AddAddressGUI.wardName=ward.getName();
             }
             this.setVisible(false);
-            AddAddressGUI new1=new AddAddressGUI();System.out.println(AddAddressGUI.districtName);
+            AddAddressGUI new1=new AddAddressGUI();//System.out.println(AddAddressGUI.districtName);
             new1.district.setText(AddAddressGUI.districtName);new1.district.setForeground(Color.BLACK);
             new1.province.setText(AddAddressGUI.provinceName);new1.province.setForeground(Color.BLACK);
             new1.ward.setText(AddAddressGUI.wardName);new1.ward.setForeground(Color.BLACK);
