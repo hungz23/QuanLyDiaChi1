@@ -133,6 +133,11 @@ public class AddressManagementGUI extends javax.swing.JFrame {
         }
         infoList=new JList(model);
         //added
+        infoList.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                infoListMouseClicked(evt);
+            }
+        });
         infoList.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
             public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
                 infoListValueChanged(evt);
@@ -189,7 +194,7 @@ public class AddressManagementGUI extends javax.swing.JFrame {
         // TODO add your handling code here:
         AddressManagementGUI.this.setVisible(false);
         //AddressManagementGUI.this.dispose();
-        new NewAddGUI().setVisible(true);
+        new AddAddressGUI().setVisible(true);
 
     }//GEN-LAST:event_addActionPerformed
 
@@ -344,6 +349,11 @@ public class AddressManagementGUI extends javax.swing.JFrame {
         AddressManagementGUI.this.setVisible(false);
         new AddressManagementGUI().setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void infoListMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_infoListMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_infoListMouseClicked
 
     /**
      * @param args the command line arguments
